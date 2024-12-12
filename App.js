@@ -1,20 +1,22 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-
+import { StyleSheet, SafeAreaView } from "react-native";
+import MainPage from "./MainPage";
+import ViewImage from "./ViewImage";
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Hello up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView>
+      <MainPage />
+      {/* <ViewImage /> */}
+    </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
+const logoSyles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    position: "absolute",
+    top: "10%",
+    left: "41%",
+    resizeMode: "contain",
+    height: 75,
+    width: 75,
   },
 });
