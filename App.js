@@ -1,22 +1,5 @@
-import { StyleSheet, SafeAreaView } from "react-native";
-import MainPage from "./MainPage";
-import ViewImage from "./ViewImage";
+import MainPage from "./App/screen/MainPage";
+import ViewImage from "./App/screen/ViewImage";
 export default function App() {
-  return (
-    <SafeAreaView>
-      <MainPage />
-      {/* <ViewImage /> */}
-    </SafeAreaView>
-  );
+  return <ViewImage />;
 }
-
-const logoSyles = StyleSheet.create({
-  container: {
-    position: "absolute",
-    top: "10%",
-    left: "41%",
-    resizeMode: "contain",
-    height: 75,
-    width: 75,
-  },
-});
