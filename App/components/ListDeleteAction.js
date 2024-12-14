@@ -1,0 +1,28 @@
+import React from "react";
+import { View, TouchableWithoutFeedback, StyleSheet } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import colors from "../config/colors";
+
+export default function ListDeleteAction({ onPress }) {
+  return (
+    <TouchableWithoutFeedback onPress={onPress}>
+      <View style={styles.container}>
+        <MaterialCommunityIcons
+          name="trash-can"
+          size={35}
+          color={colors.white}
+        />
+      </View>
+    </TouchableWithoutFeedback>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: colors.danger,
+    width: 70,
+    height: "100%", // Ensure full height of the list item
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});

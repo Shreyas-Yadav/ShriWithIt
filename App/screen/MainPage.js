@@ -2,6 +2,7 @@ import React from "react";
 import { Image, ImageBackground, StyleSheet, View, Text } from "react-native";
 import bgImage from "../assets/background.jpg";
 import logo from "../assets/logo-red.png";
+import AppButton from "../components/AppButton";
 export default function MainPage() {
   return (
     <ImageBackground source={bgImage} style={styles.backgroundImage}>
@@ -9,8 +10,19 @@ export default function MainPage() {
         <Image source={logo} style={styles.logo} />
         <Text style={styles.logoText}>This is My first App</Text>
       </View>
-      <View style={styles.loginIcon}></View>
-      <View style={styles.registerIcon}></View>
+      <View style={styles.btnContainer}>
+        <AppButton
+          title="Login"
+          onPress={() => {
+            console.log("login cliked");
+          }}
+        />
+        <AppButton
+          title="Register"
+          onPress={() => console.log("register tapped")}
+          color="lightgreen"
+        />
+      </View>
     </ImageBackground>
   );
 }
@@ -21,10 +33,9 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     alignItems: "center",
   },
-  loginIcon: {
-    backgroundColor: "tomato",
+  btnContainer: {
     width: "100%",
-    height: 70,
+    padding: 20,
   },
   logo: {
     height: 100,
@@ -37,8 +48,9 @@ const styles = StyleSheet.create({
   },
   logoText: {
     textAlign: "center",
-    marginTop: 10,
     fontSize: 20,
+    fontWeight: 600,
+    paddingVertical: 10,
   },
   registerIcon: {
     backgroundColor: "lightgreen",
