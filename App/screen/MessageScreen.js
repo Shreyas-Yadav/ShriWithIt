@@ -1,4 +1,12 @@
-const messages = [
+import { FlatList, StyleSheet, View } from "react-native";
+import React, { useState } from "react";
+import ListItem from "../components/ListItem";
+import Screen from "../components/Screen";
+import ListItemSeperator from "../components/ListItemSeperator";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import ListItemDeleteAction from "../components/ListItemDeleteAction";
+
+const initalMessages = [
   {
     id: 1,
     title: "t1",
@@ -13,14 +21,13 @@ const messages = [
   },
 ];
 
-import { FlatList, StyleSheet, View } from "react-native";
-import React from "react";
-import ListItem from "../components/ListItem";
-import Screen from "../components/Screen";
-import ListItemSeperator from "../components/ListItemSeperator";
-
-import { GestureHandlerRootView } from "react-native-gesture-handler";
 export default function MessageScreen() {
+  const [messages, setMessages] = useState(initalMessages);
+
+  const handleDelete = (message) => {
+    setMessages(messages.filter((m) => m.id !== message.id));
+  };
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Screen>
@@ -36,7 +43,7 @@ export default function MessageScreen() {
                 console.log("Message selectd ", item);
               }}
               renderRightActions={() => (
-                <View style={{ backgroundColor: "red", width: 100 }}></View>
+                <ListItemDeleteAction onPress={() => handleDelete(item)} />
               )}
             />
           )}
