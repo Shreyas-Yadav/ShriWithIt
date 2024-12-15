@@ -23,6 +23,7 @@ const initalMessages = [
 
 export default function MessageScreen() {
   const [messages, setMessages] = useState(initalMessages);
+  const [refreshing, setRefresh] = useState(false);
 
   const handleDelete = (message) => {
     setMessages(messages.filter((m) => m.id !== message.id));
@@ -48,6 +49,17 @@ export default function MessageScreen() {
             />
           )}
           ItemSeparatorComponent={<ListItemSeperator />}
+          refreshing={refreshing}
+          onRefresh={() => {
+            setMessages([
+              {
+                id: 2,
+                title: "t2",
+                desc: "d2",
+                image: require("../assets/mosh.jpg"),
+              },
+            ]);
+          }}
         />
       </Screen>
     </GestureHandlerRootView>
