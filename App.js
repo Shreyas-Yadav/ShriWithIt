@@ -3,8 +3,19 @@ import colors from "./App/config/colors";
 import MessageScreen from "./App/screen/MessageScreen";
 import MainPage from "./App/screen/MainPage";
 import ViewImage from "./App/screen/ViewImage";
+import Icon from "./App/components/Icon";
+import Screen from "./App/components/Screen";
+import ListItem from "./App/components/ListItem";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 export default function App() {
-  return <MessageScreen />;
+  return (
+    <GestureHandlerRootView>
+      <ListItem
+        title="My title"
+        IconComponent={() => <Icon name="email" size={50} />}
+      />
+    </GestureHandlerRootView>
+  );
 }
 
 const styles = StyleSheet.create({
