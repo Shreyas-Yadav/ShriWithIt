@@ -11,17 +11,18 @@
   },
   "dependencies": {
     "expo": "~52.0.18",
-    "expo-constants": "^17.0.3",
+    "expo-cli": "^6.3.10",
+    "expo-constants": "~17.0.3",
     "expo-status-bar": "~2.0.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-native": "0.76.5",
-    "react-native-gesture-handler": "^2.21.2",
-    "react-native-reanimated": "^3.16.5",
+    "react-native-gesture-handler": "~2.20.2",
+    "react-native-reanimated": "~3.16.1",
     "react-native-web": "~0.19.13"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.25.2"
   },
   "private": true
 }

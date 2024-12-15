@@ -1,17 +1,12 @@
 import React from "react";
 import { View, Image, StyleSheet, TouchableHighlight } from "react-native";
-import { Swipeable } from "react-native-gesture-handler";
+import Swipeable from "react-native-gesture-handler/Swipeable";
 import AppText from "./AppText";
 import colors from "../config/colors";
 
 const ListItem = ({ image, title, subTitle, onPress, renderRightActions }) => {
   return (
-    <Swipeable
-      renderRightActions={renderRightActions}
-      friction={2} // Controls the resistance when swiping
-      leftThreshold={30} // How far to drag before action triggers
-      rightThreshold={30}
-    >
+    <Swipeable renderRightActions={renderRightActions}>
       <TouchableHighlight onPress={onPress} underlayColor={colors.primary}>
         <View style={styles.container}>
           <Image style={styles.image} source={image} />
