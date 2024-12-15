@@ -7,15 +7,9 @@ import Icon from "./App/components/Icon";
 import Screen from "./App/components/Screen";
 import ListItem from "./App/components/ListItem";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import AccountScreen from "./App/screen/AccountScreen";
 export default function App() {
-  return (
-    <GestureHandlerRootView>
-      <ListItem
-        title="My title"
-        IconComponent={() => <Icon name="email" size={50} />}
-      />
-    </GestureHandlerRootView>
-  );
+  return <AccountScreen />;
 }
 
 const styles = StyleSheet.create({

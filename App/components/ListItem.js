@@ -16,8 +16,8 @@ const ListItem = ({
     <Swipeable renderRightActions={renderRightActions}>
       <TouchableHighlight onPress={onPress} underlayColor={colors.primary}>
         <View style={styles.container}>
+          {IconComponent}
           {image && <Image style={styles.image} source={image} />}
-          {IconComponent && <IconComponent />}
           <View style={styles.textContainer}>
             <AppText style={styles.title}>{title}</AppText>
             {subTitle && <AppText style={styles.subTitle}>{subTitle}</AppText>}
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     padding: 10,
-    backgroundColor: "white", // Ensure background is visible when swiping
+    backgroundColor: "white",
   },
   image: {
     width: 70,
@@ -44,10 +44,11 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     color: colors.medium,
+    fontSize: 14,
   },
   textContainer: {
     justifyContent: "center",
-    marginLeft: 10,
+    marginHorizontal: 10,
   },
   title: {
     fontWeight: "bold",
