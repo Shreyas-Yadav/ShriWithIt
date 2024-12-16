@@ -9,7 +9,7 @@ export default function ListItemSeperator() {
 const styles = StyleSheet.create({
   seperator: {
     width: "100%",
-    height: 0,
+    height: 1,
     backgroundColor: colors.medium,
     marginVertical: 1,
   },

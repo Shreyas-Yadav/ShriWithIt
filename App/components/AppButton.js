@@ -1,13 +1,13 @@
 import { Text, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
 
-export default function AppButton({ title, onPress, color = "tomato" }) {
+export default function AppButton({ title, onPress, color = "tomato", style }) {
   return (
     <TouchableOpacity
       style={[styles.container, { backgroundColor: color }]}
       onPress={onPress}
     >
-      <Text style={styles.textContent}>{title}</Text>
+      <Text style={[styles.textContent, style]}>{title}</Text>
     </TouchableOpacity>
   );
 }
@@ -19,8 +19,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     justifyContent: "center",
     alignItems: "center",
-    padding: 15,
-    margin: 5,
+    height: 50,
   },
   textContent: {
     color: "#fff",

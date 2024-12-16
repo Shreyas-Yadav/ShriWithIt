@@ -1,9 +1,8 @@
 import {
   Button,
+  FlatList,
   Modal,
   StyleSheet,
-  Text,
-  TextInput,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
@@ -13,8 +12,17 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import AppText from "./AppText";
 import Screen from "./Screen";
+import PickerListItem from "./PickerListItem";
+import ListItemSeperator from "./ListItemSeperator";
+import AppButton from "./AppButton";
 
-const AppPicker = ({ icon, placeholder }) => {
+const AppPicker = ({
+  icon,
+  items,
+  onSelectItem,
+  selectedItem,
+  placeholder,
+}) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   return (
@@ -28,7 +36,9 @@ const AppPicker = ({ icon, placeholder }) => {
               color={colors.medium}
             />
           )}
-          <AppText style={styles.text}>{placeholder}</AppText>
+          <AppText style={styles.text}>
+            {selectedItem ? selectedItem : placeholder}
+          </AppText>
           <MaterialCommunityIcons
             name="chevron-down"
             size={35}
@@ -38,10 +48,23 @@ const AppPicker = ({ icon, placeholder }) => {
       </TouchableWithoutFeedback>
       <Modal visible={isModalVisible}>
         <Screen>
-          <Button
-            title="Close"
-            onPress={() => setIsModalVisible(false)}
-          ></Button>
+          <View style={styles.btnContainer}>
+            <AppButton title="Close" onPress={() => setIsModalVisible(false)} />
+          </View>
+          <FlatList
+            data={items}
+            ItemSeparatorComponent={<ListItemSeperator />}
+            keyExtractor={(item) => item.value.toString()}
+            renderItem={({ item }) => (
+              <PickerListItem
+                label={item.name}
+                onPress={() => {
+                  setIsModalVisible(false);
+                  onSelectItem(item.name);
+                }}
+              />
+            )}
+          />
         </Screen>
       </Modal>
     </>
@@ -62,5 +85,9 @@ const styles = StyleSheet.create({
   },
   text: {
     flex: 1,
+  },
+  btnContainer: {
+    width: "50%",
+    alignSelf: "center",
   },
 });
