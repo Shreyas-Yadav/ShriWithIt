@@ -13,7 +13,7 @@ const AppInputText = ({ icon, placeholder, onChangeText, ...otherProps }) => {
       )}
       <TextInput
         onChangeText={onChangeText}
-        style={textStyle.text}
+        style={[textStyle.text, styles.text]}
         {...otherProps}
         placeholder={placeholder}
       />
@@ -32,5 +32,8 @@ const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 10,
     alignItems: "center",
+  },
+  text: {
+    width: "100%",
   },
 });

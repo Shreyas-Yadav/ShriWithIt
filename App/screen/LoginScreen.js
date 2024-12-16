@@ -7,11 +7,11 @@ import * as Yup from "yup";
 import Screen from "../components/Screen";
 import AppInputText from "../components/AppInputText";
 import AppButton from "../components/AppButton";
-import AppText from "../components/AppText";
-import colors from "../config/colors";
+import ErrorMessage from "../components/ErrorMessage";
+import AppFormField from "../components/AppFormField";
 
 const LoginScreen = () => {
-  const validattionObject = Yup.object().shape({
+  const validationObject = Yup.object().shape({
     email: Yup.string().required().email().label("Email"),
     password: Yup.string().required().min(4).label("Password"),
   });
@@ -22,31 +22,33 @@ const LoginScreen = () => {
       <Formik
         initialValues={{ email: "", password: "" }}
         onSubmit={(values) => console.log(values)}
-        validationSchema={validattionObject}
+        validationSchema={validationObject}
       >
-        {({ handleChange, handleSubmit, errors }) => (
+        {({ handleChange, handleSubmit, errors, setFieldTouched, touched }) => (
           <>
-            <AppInputText
+            <AppFormField
               icon="email"
               placeholder="Email Address"
               keyboardType="email-address"
               autoCorrect={false}
               autoCapitalize="none"
-              onChangeText={handleChange("email")}
+              name="email"
             />
-            <AppText style={{ color: "red" }}>{errors.email}</AppText>
-            <AppInputText
+            <AppFormField
               icon="lock"
               autoCorrect={false}
               autoCapitalize="none"
               placeholder="Password"
               keyboardType="password"
               textContentType="password"
-              onChangeText={handleChange("password")}
+              name="password"
               secureTextEntry
             />
-            <AppText style={{ color: "red" }}>{errors.password}</AppText>
-            <AppButton title="Login" onPress={handleSubmit} />
+            <AppButton
+              style={styles.button}
+              title="Login"
+              onPress={handleSubmit}
+            />
           </>
         )}
       </Formik>
@@ -59,6 +61,10 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   container: {
     padding: 9,
+    justifyContent: "center",
+  },
+  button: {
+    marginVertical: 15,
   },
   logo: {
     width: 80,

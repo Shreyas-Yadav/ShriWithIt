@@ -4,10 +4,10 @@ import React from "react";
 export default function AppButton({ title, onPress, color = "tomato", style }) {
   return (
     <TouchableOpacity
-      style={[styles.container, { backgroundColor: color }]}
+      style={[styles.container, style, { backgroundColor: color }]}
       onPress={onPress}
     >
-      <Text style={[styles.textContent, style]}>{title}</Text>
+      <Text style={[styles.textContent]}>{title}</Text>
     </TouchableOpacity>
   );
 }
