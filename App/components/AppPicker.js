@@ -36,9 +36,11 @@ const AppPicker = ({
               color={colors.medium}
             />
           )}
-          <AppText style={styles.text}>
-            {selectedItem ? selectedItem : placeholder}
-          </AppText>
+          {selectedItem ? (
+            <AppText style={styles.text}>{selectedItem}</AppText>
+          ) : (
+            <AppText style={styles.placeholder}>{placeholder}</AppText>
+          )}
           <MaterialCommunityIcons
             name="chevron-down"
             size={35}
@@ -57,10 +59,10 @@ const AppPicker = ({
             keyExtractor={(item) => item.value.toString()}
             renderItem={({ item }) => (
               <PickerListItem
-                label={item.name}
+                label={item.label}
                 onPress={() => {
                   setIsModalVisible(false);
-                  onSelectItem(item.name);
+                  onSelectItem(item.label);
                 }}
               />
             )}
@@ -82,6 +84,10 @@ const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 10,
     alignItems: "center",
+  },
+  placeholder: {
+    color: colors.medium,
+    flex: 1,
   },
   text: {
     flex: 1,

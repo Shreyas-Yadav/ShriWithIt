@@ -13,6 +13,7 @@ import AppInputText from "./App/components/AppInputText";
 import AppPicker from "./App/components/AppPicker";
 import { useState } from "react";
 import LoginScreen from "./App/screen/LoginScreen";
+import ListingEditScreen from "./App/screen/ListingEditScreen";
 
 const catagories = [
   { name: "Clothing", value: 1 },
@@ -22,7 +23,7 @@ const catagories = [
 export default function App() {
   const [catagory, setCatagory] = useState(catagories[0].name);
 
-  return <LoginScreen />;
+  return <ListingEditScreen />;
 }
 
 const styles = StyleSheet.create({
