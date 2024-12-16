@@ -6,7 +6,9 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 export default function Screen({ children, style }) {
   return (
     <GestureHandlerRootView>
-      <SafeAreaView style={[styles.screen, style]}>{children}</SafeAreaView>
+      <SafeAreaView style={[styles.screen, style]}>
+        <View style={style}>{children}</View>
+      </SafeAreaView>
     </GestureHandlerRootView>
   );
 }

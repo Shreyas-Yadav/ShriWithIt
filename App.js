@@ -8,8 +8,16 @@ import Screen from "./App/components/Screen";
 import ListItem from "./App/components/ListItem";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import AccountScreen from "./App/screen/AccountScreen";
+import ListingScreen from "./App/screen/ListingScreen";
+import AppInputText from "./App/components/AppInputText";
+import AppPicker from "./App/components/AppPicker";
 export default function App() {
-  return <AccountScreen />;
+  return (
+    <Screen>
+      <AppPicker placeholder="First Name" />
+      <AppInputText placeholder="email" icon="email" />
+    </Screen>
+  );
 }
 
 const styles = StyleSheet.create({
