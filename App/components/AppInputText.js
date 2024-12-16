@@ -1,18 +1,22 @@
-import { StyleSheet, Text, TextInput, View } from "react-native";
-import React, { useState } from "react";
-import Screen from "./Screen";
+import { StyleSheet, TextInput, View } from "react-native";
+import React from "react";
 import colors from "../config/colors";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import textStyle from "../config/styles";
 
-const AppInputText = ({ icon, placeholder }) => {
+const AppInputText = ({ icon, placeholder, onChangeText, ...otherProps }) => {
   return (
     <View style={styles.container}>
       {icon && (
         <MaterialCommunityIcons name={icon} size={25} color={colors.medium} />
       )}
-      <TextInput style={textStyle.text} placeholder={placeholder} />
+      <TextInput
+        onChangeText={onChangeText}
+        style={textStyle.text}
+        {...otherProps}
+        placeholder={placeholder}
+      />
     </View>
   );
 };

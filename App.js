@@ -12,6 +12,7 @@ import ListingScreen from "./App/screen/ListingScreen";
 import AppInputText from "./App/components/AppInputText";
 import AppPicker from "./App/components/AppPicker";
 import { useState } from "react";
+import LoginScreen from "./App/screen/LoginScreen";
 
 const catagories = [
   { name: "Clothing", value: 1 },
@@ -21,17 +22,7 @@ const catagories = [
 export default function App() {
   const [catagory, setCatagory] = useState(catagories[0].name);
 
-  return (
-    <Screen>
-      <AppPicker
-        selectedItem={catagory}
-        onSelectItem={(item) => setCatagory(item)}
-        items={catagories}
-        placeholder="Catagory"
-      />
-      <AppInputText placeholder="Email" icon="email" />
-    </Screen>
-  );
+  return <LoginScreen />;
 }
 
 const styles = StyleSheet.create({
