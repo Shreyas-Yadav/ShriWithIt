@@ -1,16 +1,15 @@
-import { View, StyleSheet, TouchableOpacity, Alert } from "react-native";
+import { Alert, StyleSheet, TouchableOpacity, View } from "react-native";
 import { useState } from "react";
 import * as ImagePicker from "expo-image-picker";
-import { v4 as uuidv4 } from "uuid";
+import React from "react";
 
-import colors from "./App/config/colors";
-import Icon from "./App/components/Icon";
-import Screen from "./App/components/Screen";
-import EditImage from "./App/components/EditImage";
+import colors from "../config/colors";
+import Icon from "../components/Icon";
+import Screen from "../components/Screen";
+import EditImage from "../components/EditImage";
 import { FlatList } from "react-native-gesture-handler";
-import ImageUpload from "./App/components/ImageUpload";
 
-export default function App() {
+export default function ImageUpload() {
   const [imageList, setImageList] = useState([]);
 
   const getImageAccess = async () => {
@@ -44,8 +43,30 @@ export default function App() {
       },
     ]);
   };
+  return (
+    <Screen>
+      <View style={styles.container}>
+        <TouchableOpacity onPress={getImageAccess}>
+          <View style={styles.imageSelector}>
+            <Icon name="camera" backgroundColor="none" size={70} />
+          </View>
+        </TouchableOpacity>
 
-  return <ImageUpload />;
+        <FlatList
+          style={styles.itemList}
+          data={imageList}
+          keyExtractor={(item) => item.imgId.toString()}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={() => deleteAlert(item.imgId)}>
+              <EditImage imageUri={item.uri} />
+            </TouchableOpacity>
+          )}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
+      </View>
+    </Screen>
+  );
 }
 
 const styles = StyleSheet.create({

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Image } from "react-native";
 import React from "react";
 import * as Yup from "yup";
 
@@ -15,6 +15,7 @@ const RegisterScreen = () => {
   });
   return (
     <Screen style={styles.screen}>
+      <Image style={styles.logo} source={require("../assets/logo-red.png")} />
       <AppForm
         initialValues={{ username: "", email: "", password: "" }}
         onSubmit={(values) => console.log(values)}
@@ -55,7 +56,14 @@ const RegisterScreen = () => {
 export default RegisterScreen;
 
 const styles = StyleSheet.create({
+  logo: {
+    width: 70,
+    height: 70,
+    alignSelf: "center",
+    marginBottom: 20,
+  },
   screen: {
     padding: 10,
+    justifyContent: "center",
   },
 });

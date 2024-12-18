@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   },
   btnContainer: {
     width: "100%",
-    padding: 20,
+    padding: 30,
   },
   logo: {
     height: 100,

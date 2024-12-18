@@ -20,7 +20,9 @@ const AppPicker = ({
   icon,
   items,
   onSelectItem,
+  numberOfColumns = 1,
   selectedItem,
+  PickerItemComponent = PickerListItem,
   placeholder,
 }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -55,10 +57,12 @@ const AppPicker = ({
           </View>
           <FlatList
             data={items}
+            numColumns={numberOfColumns}
             ItemSeparatorComponent={<ListItemSeperator />}
             keyExtractor={(item) => item.value.toString()}
             renderItem={({ item }) => (
-              <PickerListItem
+              <PickerItemComponent
+                item={item}
                 label={item.label}
                 onPress={() => {
                   setIsModalVisible(false);
