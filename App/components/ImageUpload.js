@@ -14,7 +14,10 @@ export default function ImageUpload() {
 
   const getImageAccess = async () => {
     try {
-      const result = await ImagePicker.launchImageLibraryAsync();
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        quality: 0.5,
+      });
       if (!result.canceled) {
         const imageObject = {
           imgId: result.assets[0].uri,

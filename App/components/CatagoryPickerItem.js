@@ -3,16 +3,19 @@ import React from "react";
 import Icon from "./Icon";
 import AppText from "./AppText";
 import colors from "../config/colors";
+import { TouchableOpacity } from "react-native";
 
 const CatagoryPickerItem = ({ item, onPress }) => {
   return (
     <View style={styles.conatiner}>
-      <Icon
-        backgroundColor={item.backgroundColor}
-        name={item.icon}
-        size={70}
-      ></Icon>
-      <AppText>{item.label}</AppText>
+      <TouchableOpacity onPress={onPress}>
+        <Icon
+          backgroundColor={item.backgroundColor}
+          name={item.icon}
+          size={70}
+        ></Icon>
+        <AppText>{item.label}</AppText>
+      </TouchableOpacity>
     </View>
   );
 };
