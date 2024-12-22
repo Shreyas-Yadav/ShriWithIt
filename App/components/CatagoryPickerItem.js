@@ -8,7 +8,7 @@ import { TouchableOpacity } from "react-native";
 const CatagoryPickerItem = ({ item, onPress }) => {
   return (
     <View style={styles.conatiner}>
-      <TouchableOpacity onPress={onPress}>
+      <TouchableOpacity onPress={() => onPress(item)}>
         <Icon
           backgroundColor={item.backgroundColor}
           name={item.icon}

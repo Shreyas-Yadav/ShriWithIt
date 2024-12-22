@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import ListItem from "../components/ListItem";
 import Screen from "../components/Screen";
 import ListItemSeperator from "../components/ListItemSeperator";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
 import ListItemDeleteAction from "../components/ListItemDeleteAction";
 
 const initalMessages = [
