@@ -20,12 +20,14 @@ export default function AppButton({
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
+    width: "50%",
     backgroundColor: "tomato",
     borderRadius: 25,
     justifyContent: "center",
-    alignItems: "center",
     height: 50,
+    marginVertical: 10,
+    marginLeft: "auto",
+    marginRight: "auto",
   },
   textContent: {
     color: "#fff",

@@ -6,6 +6,8 @@ import Screen from "../components/Screen";
 import AppFormField from "../components/Form/AppFormField";
 import SubmitButton from "../components/Form/SubmitButton";
 import AppForm from "../components/Form/AppForm";
+import bgImage from "../assets/background.jpg";
+import { ImageBackground } from "react-native";
 
 const LoginScreen = () => {
   const validationObject = Yup.object().shape({

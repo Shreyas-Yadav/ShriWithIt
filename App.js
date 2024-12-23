@@ -1,6 +1,14 @@
 import React from "react";
-import ListingEditScreen from "./App/screen/ListingEditScreen";
 
+import AuthNavigator from "./App/navigation/AuthNavigator";
+
+import { NavigationContainer } from "@react-navigation/native";
+import navigationTheme from "./App/navigation/navigationTheme";
+import AppNavigator from "./App/navigation/AppNavigator";
 export default function App() {
-  return <ListingEditScreen />;
+  return (
+    <NavigationContainer theme={navigationTheme}>
+      <AppNavigator />
+    </NavigationContainer>
+  );
 }

@@ -3,7 +3,13 @@ import { Image, ImageBackground, StyleSheet, View, Text } from "react-native";
 import bgImage from "../assets/background.jpg";
 import logo from "../assets/logo-red.png";
 import AppButton from "../components/AppButton";
+import { useNavigation } from "@react-navigation/native";
+
 export default function MainPage() {
+  const navigation = useNavigation();
+  const handlePress = (screen) => {
+    navigation.navigate(screen);
+  };
   return (
     <ImageBackground source={bgImage} style={styles.backgroundImage}>
       <View style={styles.logoContainer}>
@@ -11,17 +17,16 @@ export default function MainPage() {
         <Text style={styles.logoText}>This is My first App</Text>
       </View>
       <View style={styles.btnContainer}>
-        <AppButton
-          title="Login"
-          onPress={() => {
-            console.log("login cliked");
-          }}
-        />
-        <AppButton
-          title="Register"
-          onPress={() => console.log("register tapped")}
-          color="lightgreen"
-        />
+        <View>
+          <AppButton title="Login" onPress={() => handlePress("Login")} />
+        </View>
+        <View>
+          <AppButton
+            title="Register"
+            onPress={() => handlePress("Register")}
+            color="lightgreen"
+          />
+        </View>
       </View>
     </ImageBackground>
   );
@@ -34,8 +39,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   btnContainer: {
+    height: 200,
     width: "100%",
-    padding: 30,
   },
   logo: {
     height: 100,
