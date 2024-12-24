@@ -1,13 +1,17 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
-import ListingScreen from "../screen/ListingScreen";
 import MessageScreen from "../screen/MessageScreen";
 import AccountScreen from "../screen/AccountScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import colors from "../config/colors";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import FeedNavigator from "./FeedNavigator";
+import AccountNavigator from "./AccountNavigator";
+import ListingEditScreen from "../screen/ListingEditScreen";
+import NewListingButton from "./NewListingButton";
+
+import routes from "./routes";
 
 const AppNavigator = () => {
   const Tab = createBottomTabNavigator();
@@ -19,34 +23,36 @@ const AppNavigator = () => {
       }}
     >
       <Tab.Screen
-        name="ListingScreen"
-        component={ListingScreen}
+        name="Feed"
+        component={FeedNavigator}
         options={{
-          title: "Listings",
+          tabBarIcon: ({ size, color }) => (
+            <MaterialCommunityIcons name="home" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="ListingEdit"
+        component={ListingEditScreen}
+        options={({ navigation }) => ({
+          tabBarButton: () => (
+            <NewListingButton
+              onPress={() => navigation.navigate(routes.EDIT_LISTINGS)}
+            />
+          ),
           tabBarIcon: ({ size, color }) => (
             <MaterialCommunityIcons
-              name="format-list-numbered"
+              name="plus-circle"
               size={size}
               color={color}
             />
           ),
-        }}
+        })}
       />
       <Tab.Screen
-        name="MessageScreen"
-        component={MessageScreen}
+        name="Account"
+        component={AccountNavigator}
         options={{
-          title: "Messages",
-          tabBarIcon: ({ size, color }) => (
-            <MaterialCommunityIcons name="email" size={size} color={color} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="AccountScreen"
-        component={AccountScreen}
-        options={{
-          title: "Account",
           headerStyle: { backgroundColor: colors.secondary },
           tabBarIcon: ({ size, color }) => (
             <MaterialCommunityIcons name="account" size={size} color={color} />

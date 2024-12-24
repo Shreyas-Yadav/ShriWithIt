@@ -21,10 +21,11 @@ const menuItems = [
       backgroundColor: colors.secondary,
       size: 50,
     },
+    targetScreen: "Messages",
   },
 ];
 
-export default function AccountScreen() {
+export default function AccountScreen({ navigation }) {
   return (
     <Screen style={styles.mainContainer}>
       {/* Profile Section */}
@@ -52,6 +53,7 @@ export default function AccountScreen() {
                   size={item.icon.size}
                 />
               }
+              onPress={() => navigation.navigate(item.targetScreen)}
             />
           )}
         />

@@ -5,7 +5,9 @@ import Card from "../components/Card";
 import ListItemSeperator from "../components/ListItemSeperator";
 import colors from "../config/colors";
 
-export default function ListingScreen() {
+import routes from "../navigation/routes";
+
+export default function ListingScreen({ navigation }) {
   const listings = [
     {
       id: 1,
@@ -32,6 +34,7 @@ export default function ListingScreen() {
             title={item.title}
             subtitle={"$" + item.price} // Ensure the prop name matches `Card`
             image={item.image}
+            onPress={() => navigation.navigate(routes.DETAILS_LISTINGS, item)}
           />
         )}
       />
