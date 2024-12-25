@@ -20,6 +20,7 @@ const AppNavigator = () => {
       screenOptions={{
         headerStyle: { backgroundColor: colors.primary },
         tabBarStyle: { height: 60, paddingTop: 8 },
+        headerShown: false,
       }}
     >
       <Tab.Screen
@@ -50,7 +51,7 @@ const AppNavigator = () => {
         })}
       />
       <Tab.Screen
-        name="Account"
+        name="AccountNavigtor"
         component={AccountNavigator}
         options={{
           headerStyle: { backgroundColor: colors.secondary },
