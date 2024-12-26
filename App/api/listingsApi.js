@@ -1,4 +1,3 @@
-import { Header } from "@react-navigation/stack";
 import apiClient from "./client";
 
 const endpoint = "/listings";
@@ -7,7 +6,9 @@ const getListings = () => apiClient.get(endpoint);
 
 const addListing = async (listing) => {
   const data = new FormData();
-
+  apiClient.setHeaders({
+    "Content-Type": "multipart/form-data",
+  });
   // Basic fields - these are correct and match Postman
   data.append("title", listing.title);
   data.append("price", listing.price);
@@ -35,13 +36,7 @@ const addListing = async (listing) => {
   }
 
   try {
-    const response = await apiClient.post(endpoint, data, {
-      headers: {
-        Accept: "application/json",
-        // Let the browser set the Content-Type for FormData
-      },
-    });
-
+    const response = await apiClient.post(endpoint, data);
     return response;
   } catch (error) {
     console.error("Upload error:", error);
