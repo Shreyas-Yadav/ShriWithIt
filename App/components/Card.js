@@ -2,6 +2,7 @@ import { Image, StyleSheet, View } from "react-native";
 import React from "react";
 import AppText from "./AppText";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import colors from "../config/colors";
 
 export default function Card({ imageUrl, title, subtitle, onPress }) {
   return (
@@ -39,6 +40,6 @@ const styles = StyleSheet.create({
   textSubtitle: {
     fontSize: 20,
     fontWeight: "bold",
-    color: "lightgreen",
+    color: colors.secondary,
   },
 });

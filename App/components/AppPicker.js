@@ -39,7 +39,7 @@ const AppPicker = ({
             />
           )}
           {selectedItem ? (
-            <AppText style={styles.text}>{selectedItem}</AppText>
+            <AppText style={styles.text}>{selectedItem.label}</AppText>
           ) : (
             <AppText style={styles.placeholder}>{placeholder}</AppText>
           )}
@@ -66,7 +66,7 @@ const AppPicker = ({
                 label={item.label}
                 onPress={() => {
                   setIsModalVisible(false);
-                  onSelectItem(item.label);
+                  onSelectItem(item);
                 }}
               />
             )}

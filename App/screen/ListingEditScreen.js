@@ -12,12 +12,13 @@ import CatagoryPickerItem from "../components/CatagoryPickerItem";
 import FormImagePicker from "../components/Form/FormImagePicker";
 import useLocation from "../hooks/useLocation";
 import { useFormikContext } from "formik";
+import listingsApi from "../api/listingsApi";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
   price: Yup.number().required().min(1).max(10000).label("Price"),
   description: Yup.string().nullable().label("Description"),
-  category: Yup.string().required().nullable().label("Category"),
+  category: Yup.object().required().nullable().label("Category"),
   images: Yup.array().min(1, "Please select at least one image."),
 });
 
@@ -81,8 +82,17 @@ const categories = [
 function ListingEditScreen() {
   const location = useLocation();
 
-  const handleSubmit = async () => {
-    console.log("Submitted");
+  const handleSubmit = async (listings) => {
+    const result = await listingsApi.addListing({ ...listings, location });
+    if (!result.ok) {
+      console.log("Error details:", {
+        problem: result.problem,
+        status: result.status,
+        data: result.data,
+      });
+    } else {
+      alert("Success");
+    }
   };
 
   return (
@@ -96,7 +106,7 @@ function ListingEditScreen() {
           images: [],
         }}
         validationSchema={validationSchema}
-        onSubmit={(values) => console.log(location, values)}
+        onSubmit={handleSubmit}
       >
         <FormImagePicker name="images" />
         <AppFormField maxLength={255} name="title" placeholder="Title" />

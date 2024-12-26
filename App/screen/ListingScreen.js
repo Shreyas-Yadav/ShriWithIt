@@ -3,7 +3,7 @@ import { ActivityIndicator, View } from "react-native";
 import { FlatList, StyleSheet } from "react-native";
 import Card from "../components/Card";
 import colors from "../config/colors";
-import listingApi from "../api/listings";
+import listingApi from "../api/listingsApi";
 import ListItemSeperator from "../components/ListItemSeperator";
 import Screen from "../components/Screen";
 
@@ -11,52 +11,36 @@ import routes from "../navigation/routes";
 import AppText from "../components/AppText";
 import AppButton from "../components/AppButton";
 import AppActivityIndicator from "../components/AppActivityIndicator";
+import useApi from "../hooks/useApi";
+import listingsApi from "../api/listingsApi";
 
 export default function ListingScreen({ navigation }) {
-  const [error, setError] = useState(false);
-  const [errorResponse, setErrorResponse] = useState(null);
-  const [listings, setListings] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  const loadListings = async () => {
-    setLoading(true);
-    const response = await listingApi.getListings();
-    setLoading(false);
-    if (!response.ok) {
-      console.log(response);
-
-      setErrorResponse(response);
-      return setError(true);
-    }
-
-    setError(false);
-    setListings(response.data);
-  };
+  const getListingsApi = useApi(listingsApi.getListings);
 
   useEffect(() => {
-    loadListings();
+    getListingsApi.loadListings();
   }, []);
 
   return (
     <Screen style={styles.screen}>
       <View style={styles.animation}>
         <View>
-          {!loading && error && (
+          {!getListingsApi.loading && getListingsApi.error && (
             <View>
               <AppText style={{ textAlign: "center" }}>
-                {errorResponse.problem.toString()}
+                {getListingsApi.error}
               </AppText>
-              <AppButton title="Retry" onPress={loadListings} />
+              <AppButton title="Retry" onPress={getListingsApi.loadListings} />
             </View>
           )}
         </View>
         <View>
-          <AppActivityIndicator visible={loading} />
+          <AppActivityIndicator visible={getListingsApi.loading} />
         </View>
       </View>
 
       <FlatList
-        data={listings}
+        data={getListingsApi.listings}
         keyExtractor={(listing) => listing.id.toString()}
         ItemSeparatorComponent={ListItemSeperator}
         renderItem={({ item }) => (
@@ -73,10 +57,6 @@ export default function ListingScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  animation: {
-    height: "100%",
-    justifyContent: "center",
-  },
   screen: {
     padding: 10,
     backgroundColor: colors.grey,
