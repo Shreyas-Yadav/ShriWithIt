@@ -4,7 +4,7 @@ const endpoint = "/listings";
 
 const getListings = () => apiClient.get(endpoint);
 
-const addListing = async (listing) => {
+const addListing = async (listing, onUploadProgress) => {
   const data = new FormData();
   apiClient.setHeaders({
     "Content-Type": "multipart/form-data",
@@ -36,7 +36,10 @@ const addListing = async (listing) => {
   }
 
   try {
-    const response = await apiClient.post(endpoint, data);
+    const response = await apiClient.post(endpoint, data, {
+      onUploadProgress: (progress) =>
+        onUploadProgress(progress.loaded / progress.total),
+    });
     return response;
   } catch (error) {
     console.error("Upload error:", error);
