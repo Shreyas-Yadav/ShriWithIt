@@ -22,37 +22,36 @@ export default function ListingScreen({ navigation }) {
   }, []);
 
   return (
-    <Screen style={styles.screen}>
-      <View style={styles.animation}>
-        <View>
-          {!getListingsApi.loading && getListingsApi.error && (
-            <View>
-              <AppText style={{ textAlign: "center" }}>
-                {getListingsApi.error}
-              </AppText>
-              <AppButton title="Retry" onPress={getListingsApi.loadListings} />
-            </View>
-          )}
-        </View>
-        <View>
-          <AppActivityIndicator visible={getListingsApi.loading} />
-        </View>
-      </View>
-
-      <FlatList
-        data={getListingsApi.listings}
-        keyExtractor={(listing) => listing.id.toString()}
-        ItemSeparatorComponent={ListItemSeperator}
-        renderItem={({ item }) => (
-          <Card
-            title={item.title}
-            subtitle={"$" + item.price} // Ensure the prop name matches `Card`
-            imageUrl={item.images[0].url}
-            onPress={() => navigation.navigate(routes.DETAILS_LISTINGS, item)}
-          />
+    <>
+      <View style={{ justifyContent: "center", alignItems: "center" }}>
+        {!getListingsApi.loading && getListingsApi.error && (
+          <View>
+            <AppText style={{ textAlign: "center" }}>
+              {getListingsApi.error}
+            </AppText>
+            <AppButton title="Retry" onPress={getListingsApi.loadListings} />
+          </View>
         )}
-      />
-    </Screen>
+      </View>
+      <View>
+        <AppActivityIndicator visible={getListingsApi.loading} />
+      </View>
+      <Screen style={styles.screen}>
+        <FlatList
+          data={getListingsApi.listings}
+          keyExtractor={(listing) => listing.id.toString()}
+          ItemSeparatorComponent={ListItemSeperator}
+          renderItem={({ item }) => (
+            <Card
+              title={item.title}
+              subtitle={"$" + item.price} // Ensure the prop name matches `Card`
+              imageUrl={item.images[0].url}
+              onPress={() => navigation.navigate(routes.DETAILS_LISTINGS, item)}
+            />
+          )}
+        />
+      </Screen>
+    </>
   );
 }
 
