@@ -1,26 +1,53 @@
-import { StyleSheet, Image } from "react-native";
-import React from "react";
+import { StyleSheet, Image, registerCallableModule } from "react-native";
+import React, { useState } from "react";
 import * as Yup from "yup";
 
 import Screen from "../components/Screen";
 import AppForm from "../components/Form/AppForm";
 import AppFormField from "../components/Form/AppFormField";
 import SubmitButton from "../components/Form/SubmitButton";
+import auth from "../api/auth";
+import ErrorMessage from "../components/Form/ErrorMessage";
+import useAuth from "../auth/useAuth";
 
 const RegisterScreen = () => {
+  const clientAuth = useAuth();
+  const [error, setError] = useState();
+
   const validationSchema = Yup.object().shape({
     username: Yup.string().required().min(4).label("Username"),
     email: Yup.string().email().required().label("Email"),
     password: Yup.string().required().min(4).label("Password"),
   });
+
+  const handleRegister = async ({ email, username, password }) => {
+    setError(null);
+    const response = await auth.register(email, username, password);
+    if (!response.ok) {
+      if (response.data) setError(response.data.error);
+      else {
+        setError("Unexpected error occured");
+        console.log(response);
+      }
+      return;
+    }
+    try {
+      const { data: authToken } = await auth.login(email, password);
+      clientAuth.logIn(authToken);
+    } catch (error) {
+      console.log("error: ", error);
+    }
+  };
+
   return (
     <Screen style={styles.screen}>
       <Image style={styles.logo} source={require("../assets/logo-red.png")} />
       <AppForm
         initialValues={{ username: "", email: "", password: "" }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={handleRegister}
         validationSchema={validationSchema}
       >
+        <ErrorMessage message={error} visible={error} />
         <AppFormField
           icon="account"
           name="username"

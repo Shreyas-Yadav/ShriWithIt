@@ -1,7 +1,8 @@
-import { StyleSheet } from "react-native";
-import React from "react";
-import MessageScreen from "../screen/MessageScreen";
-import AccountScreen from "../screen/AccountScreen";
+import { PermissionsAndroid, StyleSheet } from "react-native";
+import React, { useEffect } from "react";
+
+import * as Notifications from "expo-notifications";
+
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import colors from "../config/colors";
 
@@ -11,9 +12,14 @@ import AccountNavigator from "./AccountNavigator";
 import ListingEditScreen from "../screen/ListingEditScreen";
 import NewListingButton from "./NewListingButton";
 
+import Navigation from "./rootNavigation";
+
 import routes from "./routes";
+import useNotifications from "../hooks/useNotifications";
 
 const AppNavigator = () => {
+  useNotifications();
+
   const Tab = createBottomTabNavigator();
   return (
     <Tab.Navigator
@@ -51,7 +57,7 @@ const AppNavigator = () => {
         })}
       />
       <Tab.Screen
-        name="AccountNavigtor"
+        name="AccountTab"
         component={AccountNavigator}
         options={{
           headerStyle: { backgroundColor: colors.secondary },

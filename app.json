@@ -4,28 +4,33 @@
     "slug": "ShriWithIt",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./app/assets/icon.png",
+    "icon": "./app/assets/splash-image.jpg",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./app/assets/splash-icon.png",
+      "image": "./app/assets/splash-image.jpg",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000"
     },
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./app/assets/adaptive-icon.png",
+        "foregroundImage": "./app/assets/splash-image.jpg",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": [
-      "expo-secure-store"
-    ]
+    "plugins": ["expo-secure-store"],
+    "extra": {
+      "eas": {
+        "projectId": "b776dff7-def0-4364-9e03-9ff78320d1f8"
+      }
+    },
+    "owner": "shri_8_1",
+    "access_token": "c7QlTnTUi_JlBRWwMU_LOU0pYNUWMv8WIfJTSKkY" // manually added
   }
 }

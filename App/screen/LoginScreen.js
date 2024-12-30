@@ -1,22 +1,18 @@
-import { Easing, Image, StyleSheet, Text, View } from "react-native";
-import React, { useContext, useState } from "react";
+import { Image, StyleSheet } from "react-native";
+import React, { useState } from "react";
 import * as Yup from "yup";
 
 import Screen from "../components/Screen";
 import AppFormField from "../components/Form/AppFormField";
 import SubmitButton from "../components/Form/SubmitButton";
 import AppForm from "../components/Form/AppForm";
-import bgImage from "../assets/background.jpg";
-import { ImageBackground } from "react-native";
-import apiClient from "../api/client";
 import auth from "../api/auth";
 import ErrorMessage from "../components/Form/ErrorMessage";
-import { jwtDecode } from "jwt-decode";
-import AuthContext from "../auth/context";
-import storage from "../auth/storage";
+
+import useAuth from "../auth/useAuth";
 
 const LoginScreen = () => {
-  const authContext = useContext(AuthContext);
+  const Auth = useAuth();
 
   const [loginFailed, setLoginFailed] = useState(false);
 
@@ -28,10 +24,8 @@ const LoginScreen = () => {
   const handleSubmit = async ({ email, password }) => {
     const response = await auth.login(email, password);
     if (!response.ok) return setLoginFailed(true);
-    const user = jwtDecode(response.data);
     setLoginFailed(false);
-    authContext.setUser(user);
-    storage.storeToken(response.data);
+    Auth.logIn(response.data);
   };
 
   return (
