@@ -4,7 +4,7 @@
     "slug": "ShriWithIt",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./app/assets/splash-image.jpg",
+    "icon": "./app/assets/appstore.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {

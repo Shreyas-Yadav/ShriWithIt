@@ -41,7 +41,7 @@ const RegisterScreen = () => {
 
   return (
     <Screen style={styles.screen}>
-      <Image style={styles.logo} source={require("../assets/logo-red.png")} />
+      <Image style={styles.logo} source={require("../assets/appstore.png")} />
       <AppForm
         initialValues={{ username: "", email: "", password: "" }}
         onSubmit={handleRegister}

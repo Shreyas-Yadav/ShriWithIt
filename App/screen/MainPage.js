@@ -1,7 +1,7 @@
 import React from "react";
 import { Image, ImageBackground, StyleSheet, View, Text } from "react-native";
 import bgImage from "../assets/background.jpg";
-import logo from "../assets/logo-red.png";
+import logo from "../assets/appstore.png";
 import AppButton from "../components/AppButton";
 import { useNavigation } from "@react-navigation/native";
 
@@ -14,7 +14,7 @@ export default function MainPage() {
     <ImageBackground source={bgImage} style={styles.backgroundImage}>
       <View style={styles.logoContainer}>
         <Image source={logo} style={styles.logo} />
-        <Text style={styles.logoText}>This is My first App</Text>
+        <Text style={styles.logoText}>Sell what you don't want</Text>
       </View>
       <View style={styles.btnContainer}>
         <View>
@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
   logo: {
     height: 100,
     width: 100,
+    borderRadius: 50,
   },
   logoContainer: {
     position: "absolute",
